@@ -1,0 +1,36 @@
+[package]
+name = "nucleus-dashboard-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.8"
+tokio = { version = "1.45.1", features = ["full"] }
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+tower = "0.5"
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "chrono", "uuid"], optional = true }
+
+uuid = { version = "1.0", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+anyhow = "1.0"
+dotenvy = "0.15"
+subxt = { version = "0.37", features = ["substrate-compat"] }
+subxt-signer = { version = "0.37", features = ["sr25519"] }
+hex = "0.4"
+parity-scale-codec = { version = "3.7", features = ["derive"] }
+sp-core = { version = "31.0", features = ["std"] }
+
+# JSON-RPC客户端依赖
+jsonrpsee = { version = "0.24", features = ["client-core", "http-client", "ws-client", "macros"] }
+
+[features]
+default = []
+database = ["sqlx"]
